@@ -20,6 +20,8 @@
 if ( empty( $events ) ) {
 	return;
 }
+
+$header_classes = [ 'tribe-events-header' ];
 ?>
 <div
 	<?php tribe_classes( $container_classes ); ?>
@@ -39,6 +41,10 @@ if ( empty( $events ) ) {
 		<?php $this->template( 'components/before' ); ?>
 
 		<div class="tribe-events-calendar-list">
+
+			<div class="tribe-events-calendar-list__month-separator">
+				<?php esc_html_e( 'Events Happening Now', 'tribe-ext-events-happening-now' ); ?>
+			</div>
 
 			<?php foreach ( $events as $event ) : ?>
 				<?php $this->setup_postdata( $event ); ?>
