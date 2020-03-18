@@ -38,7 +38,7 @@ class Shortcode {
 		'quantity'          => -1,
 		'all_day'           => true,
 	];
-	
+
 	/**
 	 * Array of callbacks for arguments validation
 	 *
