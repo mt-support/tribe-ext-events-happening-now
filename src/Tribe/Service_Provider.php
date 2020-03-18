@@ -25,6 +25,9 @@ class Service_Provider extends \tad_DI52_ServiceProvider {
 			return;
 		}
 
+		$this->container->singleton( Shortcode_Manager::class, Shortcode_Manager::class );
+		$this->container->singleton( Shortcode::class, Shortcode::class );
+
 		$this->register_hooks();
 		$this->register_assets();
 

@@ -91,9 +91,6 @@ class Shortcode {
 			return '';
 		}
 
-		// Before anything happens we set a DB ID and value for this shortcode entry.
-		$this->set_database_params();
-
 		// Modifies the Context for the shortcode params.
 		$context   = $this->alter_context( $context );
 
@@ -102,9 +99,6 @@ class Shortcode {
 
 		// Make sure to enqueue assets.
 		tribe_asset_enqueue_group( Event_Assets::$group_key );
-
-		// Toggle the shortcode required modifications.
-		$this->toggle_view_hooks( true );
 
 		// Setup the view instance.
 		$view = View::make( $view_slug, $context );
@@ -127,9 +121,6 @@ class Shortcode {
 		if ( $theme_compatiblity->is_compatibility_required() ) {
 			$html .= '</div>';
 		}
-
-		// Toggle the shortcode required modifications.
-		$this->toggle_view_hooks( false );
 
 		return $html;
 	}

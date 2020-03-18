@@ -42,8 +42,6 @@ if ( ! defined( NS . 'PLUGIN_TEXT_DOMAIN' ) ) {
 	define( NS . 'PLUGIN_TEXT_DOMAIN', 'tribe-ext-events-happening-now' );
 }
 
-define( 'TRIBE_EXT_EVENTS_HAPPENING_NOW_PATH', __DIR__ );
-
 // Do not load unless Tribe Common is fully loaded and our class does not yet exist.
 if (
 	class_exists( 'Tribe__Extension' )
@@ -53,6 +51,8 @@ if (
 	 * Extension main class, class begins loading on init() function.
 	 */
 	class Main extends Tribe__Extension {
+
+		const PATH = __DIR__;
 
 		/**
 		 * @var Tribe__Autoloader

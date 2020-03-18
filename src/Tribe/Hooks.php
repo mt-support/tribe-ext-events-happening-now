@@ -46,10 +46,7 @@ class Hooks extends \tad_DI52_ServiceProvider {
 	 * @since 1.0.0
 	 */
 	protected function add_actions() {
-		add_action( 'wp_body_open', function() {
-			$html = View::make( Happening_Now_View::class )->get_html();
-			echo $html;
-		} );
+		add_action( 'init', [ $this, 'action_add_shortcodes' ], 20 );
 	}
 
 	/**
@@ -61,6 +58,18 @@ class Hooks extends \tad_DI52_ServiceProvider {
 		add_filter( 'tribe_events_views', [ $this, 'filter_events_views' ] );
 		add_filter( 'tribe_template_origin_namespace_map', [ $this, 'filter_add_template_origin_namespace' ], 15, 3 );
 		add_filter( 'tribe_template_path_list', [ $this, 'filter_template_path_list' ], 15, 2 );
+	}
+
+	/**
+	 * Adds the new shortcodes, this normally will trigger on `init@P20` due to how we the
+	 * v1 is added on `init@P10` and we remove them on `init@P15`.
+	 *
+	 * It's important to leave gaps on priority for better injection.
+	 *
+	 * @since 4.7.5
+	 */
+	public function action_add_shortcodes() {
+		$this->container->make( Shortcode_Manager::class )->add_shortcodes();
 	}
 
 	/**
@@ -91,7 +100,7 @@ class Hooks extends \tad_DI52_ServiceProvider {
 	 * @return array  Namespace map after adding Pro to the list.
 	 */
 	public function filter_add_template_origin_namespace( $namespace_map, $path, Tribe__Template $template ) {
-		$namespace_map[ 'happening-now' ] = TRIBE_EXT_EVENTS_HAPPENING_NOW_PATH;
+		$namespace_map['happening-now'] = Main::PATH;
 		return $namespace_map;
 	}
 
@@ -106,7 +115,7 @@ class Hooks extends \tad_DI52_ServiceProvider {
 	 * @return array The filtered list of folders that will be searched for the templates.
 	 */
 	public function filter_template_path_list( array $folders = [], Tribe__Template $template ) {
-		$path = (array) rtrim( TRIBE_EXT_EVENTS_HAPPENING_NOW_PATH, '/' );
+		$path = (array) rtrim( Main::PATH, '/' );
 
 		// Pick up if the folder needs to be added to the public template path.
 		$folder = [ 'src/views' ];
