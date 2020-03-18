@@ -26,7 +26,6 @@
 namespace Tribe\Extensions\EventsHappeningNow;
 
 use Tribe__Autoloader;
-use Tribe__Dependency;
 use Tribe__Extension;
 
 /**
