@@ -50,6 +50,7 @@ if (
 	 * Extension main class, class begins loading on init() function.
 	 */
 	class Main extends Tribe__Extension {
+		const VERSION = '1.0.0';
 
 		const PATH = __DIR__;
 
