@@ -42,6 +42,9 @@ $header_classes = [ 'tribe-events-header' ];
 
 		<div class="tribe-events-calendar-list">
 
+			<?php
+			// @TODO: Make this semantic and stick it in the right place. This is a placeholder to hint at somethign for designers.
+			?>
 			<div class="tribe-events-calendar-list__month-separator">
 				<?php esc_html_e( 'Events Happening Now', 'tribe-ext-events-happening-now' ); ?>
 			</div>
