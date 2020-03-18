@@ -42,6 +42,7 @@ class Shortcode {
 		'all_day'           => null,
 		'url_title'         => null,
 		'hide_url'          => null,
+		'featured'          => null,
 	];
 
 	/**
@@ -54,6 +55,7 @@ class Shortcode {
 	protected $validate_arguments_map = [
 		'all_day'  => [ self::class, 'validate_null_or_truthy' ],
 		'hide_url' => 'tribe_is_truthy',
+		'featured' => [ self::class, 'validate_null_or_truthy' ],
 	];
 
 	/**
@@ -236,6 +238,9 @@ class Shortcode {
 		if ( isset( $arguments['all_day'] ) ) {
 			$context_args['all_day'] = tribe_is_truthy( $arguments['all_day'] );
 		}
+		if ( isset( $arguments['featured'] ) ) {
+			$context_args['featured'] = tribe_is_truthy( $arguments['featured'] );
+		}
 
 		if ( isset( $arguments['quantity'] ) ) {
 			$context_args['posts_per_page'] = (int) $arguments['quantity'];
@@ -264,6 +269,10 @@ class Shortcode {
 
 		if ( isset( $arguments['all_day'] ) ) {
 			$repository_args['all_day'] = tribe_is_truthy( $arguments['all_day'] );
+		}
+
+		if ( isset( $arguments['featured'] ) ) {
+			$repository_args['featured'] = tribe_is_truthy( $arguments['featured'] );
 		}
 
 		if ( isset( $arguments['quantity'] ) ) {
