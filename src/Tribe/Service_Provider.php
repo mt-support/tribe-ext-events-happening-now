@@ -8,9 +8,6 @@
 
 namespace Tribe\Extensions\EventsHappeningNow;
 
-use Tribe\Events\Views\V2\Assets;
-use Tribe\Events\Views\V2\Hooks;
-
 /**
  * Class Service_Provider
  * @since   1.0.0

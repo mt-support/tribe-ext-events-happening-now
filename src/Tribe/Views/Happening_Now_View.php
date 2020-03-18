@@ -25,7 +25,7 @@ class Happening_Now_View extends View {
 	 *
 	 * @var bool The publicly visible flag.
 	 */
-	protected $publicly_visible = true;
+	public static $publicly_visible = true;
 
 	/**
 	 * Returns the "pretty" name that will be visible in the View selector.
@@ -100,7 +100,8 @@ class Happening_Now_View extends View {
 
 		$now = Dates::build_date_object();
 
-		$repository_args['runs_between'] = $now;
+		$repository_args['starts_before'] = $now;
+		$repository_args['ends_after']    = $now;
 
 		// Finally set an ordering criteria.
 		$repository_args['orderby'] = 'event_date';

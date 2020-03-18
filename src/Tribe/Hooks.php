@@ -17,12 +17,16 @@
 
 namespace Tribe\Extensions\EventsHappeningNow;
 
+use Tribe\Events\Views\V2\View;
+use Tribe\Extensions\EventsHappeningNow\Views\Happening_Now_View;
+use Tribe__Template;
+
 /**
  * Class Hooks
  *
  * @since 1.0.0
  *
- * @package Tribe\Events\Views\V2
+ * @package Tribe\Extensions\EventsHappeningNow
  */
 class Hooks extends \tad_DI52_ServiceProvider {
 
@@ -42,6 +46,10 @@ class Hooks extends \tad_DI52_ServiceProvider {
 	 * @since 1.0.0
 	 */
 	protected function add_actions() {
+		add_action( 'wp_body_open', function() {
+			$html = View::make( Happening_Now_View::class )->get_html();
+			echo $html;
+		} );
 	}
 
 	/**
@@ -50,5 +58,70 @@ class Hooks extends \tad_DI52_ServiceProvider {
 	 * @since 1.0.0
 	 */
 	protected function add_filters() {
+		add_filter( 'tribe_events_views', [ $this, 'filter_events_views' ] );
+		add_filter( 'tribe_template_origin_namespace_map', [ $this, 'filter_add_template_origin_namespace' ], 15, 3 );
+		add_filter( 'tribe_template_path_list', [ $this, 'filter_template_path_list' ], 15, 2 );
+	}
+
+	/**
+	 * Filters the available Views to add the ones implemented in PRO.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array $views An array of available Views.
+	 *
+	 * @return array The array of available views, including the PRO ones.
+	 */
+	public function filter_events_views( array $views = [] ) {
+
+		$views['happening-now'] = Happening_Now_View::class;
+
+		return $views;
+	}
+
+	/**
+	 * Includes Pro into the path namespace mapping, allowing for a better namespacing when loading files.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array            $namespace_map Indexed array containing the namespace as the key and path to `strpos`.
+	 * @param string           $path          Path we will do the `strpos` to validate a given namespace.
+	 * @param Tribe__Template  $template      Current instance of the template class.
+	 *
+	 * @return array  Namespace map after adding Pro to the list.
+	 */
+	public function filter_add_template_origin_namespace( $namespace_map, $path, Tribe__Template $template ) {
+		$namespace_map[ 'happening-now' ] = TRIBE_EXT_EVENTS_HAPPENING_NOW_PATH;
+		return $namespace_map;
+	}
+
+	/**
+	 * Filters the list of folders TEC will look up to find templates to add the ones defined by PRO.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array           $folders  The current list of folders that will be searched template files.
+	 * @param Tribe__Template $template Which template instance we are dealing with.
+	 *
+	 * @return array The filtered list of folders that will be searched for the templates.
+	 */
+	public function filter_template_path_list( array $folders = [], Tribe__Template $template ) {
+		$path = (array) rtrim( TRIBE_EXT_EVENTS_HAPPENING_NOW_PATH, '/' );
+
+		// Pick up if the folder needs to be added to the public template path.
+		$folder = [ 'src/views' ];
+
+		if ( ! empty( $folder ) ) {
+			$path = array_merge( $path, $folder );
+		}
+
+		$folders['happening-now'] = [
+			'id'        => 'happening-now',
+			'namespace' => 'happening-now',
+			'priority'  => 10,
+			'path'      => implode( DIRECTORY_SEPARATOR, $path ),
+		];
+
+		return $folders;
 	}
 }
