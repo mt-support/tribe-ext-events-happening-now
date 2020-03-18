@@ -1,4 +1,5 @@
 <?php
+use \Tribe\Extensions\EventsHappeningNow\Shortcode;
 /**
  * View: Happening Now
  *
@@ -11,15 +12,18 @@
  *
  * @version 5.0.2
  *
- * @var array    $events               The array containing the events.
- * @var string[] $container_classes    Classes used for the container of the view.
- * @var array    $container_data       An additional set of container `data` attributes.
- * @var string   $breakpoint_pointer   String we use as pointer to the current view we are setting up with breakpoints.
+ * @var array     $events               The array containing the events.
+ * @var string[]  $container_classes    Classes used for the container of the view.
+ * @var array     $container_data       An additional set of container `data` attributes.
+ * @var string    $breakpoint_pointer   String we use as pointer to the current view we are setting up with breakpoints.
+ * @var Shortcode $shortcode_object     Instance of the Shortcode that created this view.
  */
 
 if ( empty( $events ) ) {
 	return;
 }
+
+$happening_now_title = $shortcode_object->get_argument( 'title', __( 'Events Happening Now', 'tribe-ext-events-happening-now' ) );
 
 $header_classes = [ 'tribe-events-header' ];
 ?>
@@ -46,7 +50,7 @@ $header_classes = [ 'tribe-events-header' ];
 			// @TODO: Make this semantic and stick it in the right place. This is a placeholder to hint at somethign for designers.
 			?>
 			<div class="tribe-events-calendar-list__month-separator">
-				<?php esc_html_e( 'Events Happening Now', 'tribe-ext-events-happening-now' ); ?>
+				<?php echo esc_html( $happening_now_title ); ?>
 			</div>
 
 			<?php foreach ( $events as $event ) : ?>

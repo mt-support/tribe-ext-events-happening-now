@@ -19,6 +19,7 @@ namespace Tribe\Extensions\EventsHappeningNow;
 
 use Tribe\Events\Views\V2\View;
 use Tribe\Extensions\EventsHappeningNow\Views\Happening_Now_View;
+use Tribe__Context as Context;
 use Tribe__Template;
 
 /**
@@ -66,7 +67,7 @@ class Hooks extends \tad_DI52_ServiceProvider {
 	 *
 	 * It's important to leave gaps on priority for better injection.
 	 *
-	 * @since 4.7.5
+	 * @since 1.0.0
 	 */
 	public function action_add_shortcodes() {
 		$this->container->make( Shortcode_Manager::class )->add_shortcodes();

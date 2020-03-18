@@ -35,8 +35,11 @@ class Shortcode {
 	 */
 	protected $default_arguments = [
 		'id'                => null,
+		'category'          => null,
+		'cat'               => null,
+		'title'             => null,
 		'quantity'          => -1,
-		'all_day'           => true,
+		'all_day'           => null,
 	];
 
 	/**
@@ -47,7 +50,7 @@ class Shortcode {
 	 * @var   array
 	 */
 	protected $validate_arguments_map = [
-		'all_day' => 'tribe_is_truthy',
+		'all_day' => [ self::class, 'validate_null_or_truthy' ],
 	];
 
 	/**
@@ -93,6 +96,7 @@ class Shortcode {
 
 		// Modifies the Context for the shortcode params.
 		$context   = $this->alter_context( $context );
+		add_filter( 'tribe_events_views_v2_view_repository_args', [ $this, 'filter_view_repository_args' ], 10, 2 );
 
 		// Fetches if we have a specific view are building.
 		$view_slug = 'happening-now';
@@ -105,6 +109,7 @@ class Shortcode {
 
 		// Setup wether this view should manage url or not.
 		$view->get_template()->set( 'should_manage_url', false );
+		$view->get_template()->set( 'shortcode_object', $this );
 
 		$theme_compatiblity = tribe( Theme_Compatibility::class );
 
@@ -121,6 +126,7 @@ class Shortcode {
 		if ( $theme_compatiblity->is_compatibility_required() ) {
 			$html .= '</div>';
 		}
+		remove_filter( 'tribe_events_views_v2_view_repository_args', [ $this, 'filter_view_repository_args' ], 10 );
 
 		return $html;
 	}
@@ -197,13 +203,7 @@ class Shortcode {
 			return $repository_args;
 		}
 
-		$shortcode_id = $context->get( 'shortcode' ,false );
-
-		if ( false === $shortcode_id || $context->doing_php_initial_state() ) {
-			return $repository_args;
-		}
-
-		$shortcode_args = $this->get_database_arguments( $shortcode_id );
+		$shortcode_args = $this->get_arguments();
 
 		$repository_args = $this->args_to_repository( (array) $repository_args, (array) $shortcode_args, $context );
 
@@ -453,10 +453,10 @@ class Shortcode {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param array  $index   Which index we indent to fetch from the arguments.
-	 * @param array  $default Default value if it doesnt exist.
+	 * @param array|string  $index   Which index we indent to fetch from the arguments.
+	 * @param array         $default Default value if it doesnt exist.
 	 *
-	 * @return array
+	 * @return mixed
 	 */
 	public function get_argument( $index, $default = null ) {
 		$arguments = $this->get_arguments();
@@ -522,5 +522,22 @@ class Shortcode {
 		$default_arguments = apply_filters( "tribe_ext_shortcode_{$registration_slug}_default_arguments", $this->default_arguments, $this );
 
 		return $default_arguments;
+	}
+
+	/**
+	 * Validation of Null or Truthy values for Shortcode Attributes.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param mixed $value Which value will be validated.
+	 *
+	 * @return bool|null   Allows Both Null and truthy values.
+	 */
+	public static function validate_null_or_truthy( $value = null ) {
+		if ( null === $value || 'null' === $value ) {
+			return null;
+		}
+
+		return tribe_is_truthy( $value );
 	}
 }
