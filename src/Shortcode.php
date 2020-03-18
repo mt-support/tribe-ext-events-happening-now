@@ -1,10 +1,7 @@
 <?php
 namespace Tribe\Extensions\EventsHappeningNow;
 
-use Tribe\Events\Pro\Views\V2\Assets as Pro_Assets;
-use Tribe\Events\Pro\Views\V2\Shortcodes\Tribe_Events;
 use Tribe\Events\Views\V2\Assets as Event_Assets;
-use Tribe\Events\Views\V2\Manager as Views_Manager;
 use Tribe\Events\Views\V2\Theme_Compatibility;
 use Tribe\Events\Views\V2\View;
 use Tribe\Events\Views\V2\View_Interface;
@@ -41,8 +38,7 @@ class Shortcode {
 		'quantity'          => -1,
 		'all_day'           => true,
 	];
-
-
+	
 	/**
 	 * Array of callbacks for arguments validation
 	 *
