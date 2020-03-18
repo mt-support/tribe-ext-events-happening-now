@@ -13,9 +13,15 @@ Provides a widget, shortcode, and optional meta for displaying events that are h
 
 == Description ==
 
-This is the long description.  No limit, and you can use Markdown (as well as in the following sections).
+This extension adds the `[tribe-happening-now]` shortcode. The parameters that can be passed are as follows:
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and Markdown parsed.
+* `all_day`: If true, only includes all day events. If false, excludes all day events. If null (left off the shortcode), includes all.
+* `category`: Categories to display
+* `featured`: If true, only includes featured events. If false, excludes featured events. If null (left off the shortcode), includes all.
+* `hide_url`: If true, suppresses the Website URL CTA
+* `quantity`: Max number of events to show (defaults to unlimited “-1”)
+* `title`: Title above event list
+* `url_title`: Title of event’s Website URL CTA
 
 == Installation ==
 
