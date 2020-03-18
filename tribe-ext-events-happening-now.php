@@ -42,6 +42,8 @@ if ( ! defined( NS . 'PLUGIN_TEXT_DOMAIN' ) ) {
 	define( NS . 'PLUGIN_TEXT_DOMAIN', 'tribe-ext-events-happening-now' );
 }
 
+define( 'TRIBE_EXT_EVENTS_HAPPENING_NOW_PATH', __DIR__ );
+
 // Do not load unless Tribe Common is fully loaded and our class does not yet exist.
 if (
 	class_exists( 'Tribe__Extension' )
@@ -88,6 +90,8 @@ if (
 			}
 
 			$this->class_loader();
+
+			tribe_register_provider( Service_Provider::class );
 		}
 
 		/**
@@ -143,8 +147,6 @@ if (
 		/**
 		 * Use Tribe Autoloader for all class files within this namespace in the 'src' directory.
 		 *
-		 * TODO: Delete this method and its usage throughout this file if there is no `src` directory, such as if there are no settings being added to the admin UI.
-		 *
 		 * @return Tribe__Autoloader
 		 */
 		public function class_loader() {
@@ -153,7 +155,7 @@ if (
 				$this->class_loader->set_dir_separator( '\\' );
 				$this->class_loader->register_prefix(
 					NS,
-					__DIR__ . DIRECTORY_SEPARATOR . 'src'
+					__DIR__ . DIRECTORY_SEPARATOR . 'src/Tribe'
 				);
 			}
 
