@@ -99,6 +99,7 @@ class Shortcode {
 
 		// Make sure to enqueue assets.
 		tribe_asset_enqueue_group( Event_Assets::$group_key );
+		tribe_asset_enqueue_group( Assets::$group_key );
 
 		// Setup the view instance.
 		$view = View::make( $view_slug, $context );

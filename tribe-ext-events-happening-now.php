@@ -59,11 +59,30 @@ if (
 		private $class_loader;
 
 		/**
+		 * @var Plugin Directory
+		 */
+		public $plugin_dir;
+
+		/**
+		 * @var Plugin path
+		 */
+		public $plugin_path;
+
+		/**
+		 * @var Plugin URL
+		 */
+		public $plugin_url;
+
+		/**
 		 * Setup the Extension's properties.
 		 *
 		 * This always executes even if the required plugins are not present.
 		 */
 		public function construct() {
+			$this->plugin_dir  = trailingslashit( basename( self::PATH ) );
+			$this->plugin_path = trailingslashit( self::PATH );
+			$this->plugin_url  = plugins_url( $this->plugin_dir, self::PATH );
+
 			/**
 			 * Examples:
 			 * All these version numbers are the ones on or after November 16, 2016, but you could remove the version
@@ -90,6 +109,7 @@ if (
 
 			$this->class_loader();
 
+			tribe_singleton( static::class, $this );
 			tribe_register_provider( Service_Provider::class );
 		}
 
