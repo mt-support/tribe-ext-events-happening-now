@@ -40,6 +40,8 @@ class Shortcode {
 		'title'             => null,
 		'quantity'          => -1,
 		'all_day'           => null,
+		'url_title'         => null,
+		'hide_url'          => null,
 	];
 
 	/**
@@ -50,7 +52,8 @@ class Shortcode {
 	 * @var   array
 	 */
 	protected $validate_arguments_map = [
-		'all_day' => [ self::class, 'validate_null_or_truthy' ],
+		'all_day'  => [ self::class, 'validate_null_or_truthy' ],
+		'hide_url' => 'tribe_is_truthy',
 	];
 
 	/**
