@@ -58,18 +58,6 @@ if (
 		private $class_loader;
 
 		/**
-		 * @var Settings
-		 */
-		private $settings;
-
-		/**
-		 * Is Events Calendar PRO active. If yes, we will add some extra functionality.
-		 *
-		 * @return bool
-		 */
-		public $ecp_active = false;
-
-		/**
 		 * Setup the Extension's properties.
 		 *
 		 * This always executes even if the required plugins are not present.
@@ -173,5 +161,5 @@ if (
 
 			return $this->class_loader;
 		}
-	} // end class
-} // end if class_exists check
+	}
+}
