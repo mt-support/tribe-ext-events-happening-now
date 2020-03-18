@@ -1,4 +1,4 @@
-=== [Base Plugin Name] Extension: [Extension Name] ===
+=== The Events Calendar Extension: Events Happening Now ===
 Contributors: ModernTribe
 Donate link: http://m.tri.be/29
 Tags: events, calendar
@@ -9,7 +9,7 @@ Stable tag: 1.0.0
 License: GPL version 3 or any later version
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-[Extension Description]
+Provides a widget, shortcode, and optional meta for displaying events that are happening now.
 
 == Description ==
 
@@ -37,6 +37,6 @@ We're always interested in your feedback and our [Help Desk](https://support.the
 
 == Changelog ==
 
-= [1.0.0] YYYY-MM-DD =
+= [1.0.0] 2020-03-18 =
 
 * Initial release
