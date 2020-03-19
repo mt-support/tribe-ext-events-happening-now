@@ -8,7 +8,7 @@ use \Tribe\Extensions\EventsHappeningNow\Shortcode;
  *
  * See more documentation about our views templating system.
  *
- * @link {INSERT_ARTCILE_LINK_HERE}
+ * @link {INSERT_ARTICLE_LINK_HERE}
  *
  * @version 5.0.2
  *
@@ -25,7 +25,9 @@ if ( empty( $events ) ) {
 
 $happening_now_title = $shortcode_object->get_argument( 'title', __( 'Events Happening Now', 'tribe-ext-events-happening-now' ) );
 
-$header_classes = [ 'tribe-events-header' ];
+$header_classes    = [ 'tribe-events-header' ];
+$wrapper_classes   = [ 'tribe-events-calendar-list', 'tribe-ext-events-happening-now' ];
+$wrapper_classes[] = 1 < count( $events ) ? 'tribe-ext-events-happening-now--multiple' : 'tribe-ext-events-happening-now--single';
 ?>
 <div
 	<?php tribe_classes( $container_classes ); ?>
@@ -44,13 +46,10 @@ $header_classes = [ 'tribe-events-header' ];
 
 		<?php $this->template( 'components/before' ); ?>
 
-		<div class="tribe-events-calendar-list">
+		<div <?php tribe_classes( $wrapper_classes ); ?>>
 
-			<?php
-			// @TODO: Make this semantic and stick it in the right place. This is a placeholder to hint at somethign for designers.
-			?>
-			<div class="tribe-events-calendar-list__month-separator">
-				<?php echo esc_html( $happening_now_title ); ?>
+			<div class="tribe-ext-events-happening-now__title">
+				<h2 class="tribe-common-h6"><?php echo esc_html( $happening_now_title ); ?></h2>
 			</div>
 
 			<?php foreach ( $events as $event ) : ?>

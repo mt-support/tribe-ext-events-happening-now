@@ -7,7 +7,7 @@
  *
  * See more documentation about our views templating system.
  *
- * @link {INSERT_ARTCILE_LINK_HERE}
+ * @link {INSERT_ARTICLE_LINK_HERE}
  *
  * @version 1.0.0
  *
@@ -19,21 +19,23 @@
 $container_classes = [
 	'tribe-common-g-row',
 	'tribe-events-calendar-list__event-row',
-	'tribe-events-calendar-happening-now__event-row',
+	'tribe-ext-events-happening-now__event-row',
 ];
 
 $container_classes['tribe-events-calendar-list__event-row--featured'] = $event->featured;
 
-$event_classes = tribe_get_post_class( [ 'tribe-events-calendar-list__event', 'tribe-common-g-row', 'tribe-common-g-row--gutters' ], $event->ID );
+$event_classes = tribe_get_post_class( [ 'tribe-events-calendar-list__event', 'tribe-common-g-row' ], $event->ID );
 ?>
 <div <?php tribe_classes( $container_classes ); ?>>
+
+	<div class="tribe-ext-events-happening-now__event-featured-image tribe-common-g-col">
+		<?php $this->template( 'list/event/featured-image', [ 'event' => $event ] ); ?>
+	</div>
 
 	<?php $this->template( 'list/event/date-tag', [ 'event' => $event ] ); ?>
 
 	<div class="tribe-events-calendar-list__event-wrapper tribe-common-g-col">
 		<article <?php tribe_classes( $event_classes ) ?>>
-			<?php $this->template( 'list/event/featured-image', [ 'event' => $event ] ); ?>
-
 			<div class="tribe-events-calendar-list__event-details tribe-common-g-col">
 
 				<header class="tribe-events-calendar-list__event-header">
