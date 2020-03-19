@@ -49,7 +49,7 @@ $wrapper_classes[] = 1 < count( $events ) ? 'tribe-ext-events-happening-now--mul
 		<div <?php tribe_classes( $wrapper_classes ); ?>>
 
 			<div class="tribe-ext-events-happening-now__title">
-				<h2 class="tribe-common-h6"><?php echo esc_html( $happening_now_title ); ?></h2>
+				<h2 class="tribe-common-h6 tribe-common-h5--min-medium"><?php echo esc_html( $happening_now_title ); ?></h2>
 			</div>
 
 			<?php foreach ( $events as $event ) : ?>
