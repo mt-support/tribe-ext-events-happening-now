@@ -44,8 +44,12 @@
 	padding-right: 0;
 }
 
-.tribe-events .tribe-events-calendar-list__event-datetime-wrapper {
+.tribe-events .tribe-ext-events-happening-now .tribe-events-calendar-list__event-datetime-wrapper {
 	margin-bottom: 4px;
+}
+
+.tribe-common--breakpoint-medium.tribe-events .tribe-ext-events-happening-now .tribe-events-calendar-list__event-description {
+	margin-top: 8px;
 }
 
 .tribe-events .tribe-ext-events-happening-now .tribe-events-calendar-list__event-row--no-image .tribe-ext-events-happening-now__event-featured-image {
