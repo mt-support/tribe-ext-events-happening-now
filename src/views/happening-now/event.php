@@ -23,7 +23,7 @@ $container_classes = [
 ];
 
 $container_classes['tribe-events-calendar-list__event-row--featured'] = $event->featured;
-$container_classes['tribe-events-calendar-list__event-row--no-image'] = empty( $event->thumbnail->exists );
+$container_classes['tribe-events-calendar-list__event-row--no-image'] = ! $event->thumbnail->exists;
 
 $event_classes = tribe_get_post_class( [ 'tribe-events-calendar-list__event', 'tribe-common-g-row' ], $event->ID );
 ?>
