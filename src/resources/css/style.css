@@ -5,6 +5,11 @@
 	padding-top: 1px;
 }
 
+.tribe-events-view--happening-now.tribe-common .tribe-common-l-container {
+	padding-left: 0;
+	padding-right: 0;
+}
+
 .tribe-ext-events-happening-now .tribe-ext-events-happening-now__title {
 	display: block;
 	border-bottom: 1px solid #D5D5D5;
@@ -18,13 +23,15 @@
 	margin-bottom: 20px;
 }
 
-.tribe-events .tribe-ext-events-happening-now.tribe-ext-events-happening-now--single .tribe-events-calendar-list__event-row,
-.tribe-common--breakpoint-medium.tribe-events.tribe-ext-events-happening-now--single .tribe-ext-events-happening-now .tribe-events-calendar-list__event-row {
+.tribe-events .tribe-ext-events-happening-now.tribe-ext-events-happening-now--single .tribe-events-calendar-list__event-row {
 	border: 1px solid #D5D5D5;
-	border-left: 4px solid #334AFF;
 	border-bottom: 0;
 	margin: 0;
 	padding: 0;
+}
+
+.tribe-common--breakpoint-medium.tribe-events .tribe-ext-events-happening-now--single.tribe-ext-events-happening-now .tribe-events-calendar-list__event-row {
+	border-left: 4px solid #334AFF;
 }
 
 .tribe-events .tribe-ext-events-happening-now.tribe-ext-events-happening-now--single .tribe-events-calendar-list__event-row:last-of-type,
@@ -37,14 +44,43 @@
 	padding-right: 0;
 }
 
+.tribe-events .tribe-events-calendar-list__event-datetime-wrapper {
+	margin-bottom: 4px;
+}
+
+.tribe-events .tribe-ext-events-happening-now .tribe-events-calendar-list__event-row--no-image .tribe-ext-events-happening-now__event-featured-image {
+	display: none;
+}
+
+.tribe-common--breakpoint-medium.tribe-events .tribe-ext-events-happening-now .tribe-events-calendar-list__event-cost .tribe-events-c-small-cta__link {
+	font-size: 14px;
+}
+
 .tribe-common--breakpoint-medium.tribe-events .tribe-ext-events-happening-now.tribe-ext-events-happening-now--single .tribe-events-calendar-list__event-date-tag,
 .tribe-common--breakpoint-medium.tribe-events .tribe-ext-events-happening-now.tribe-ext-events-happening-now--single .tribe-events-calendar-list__event-details {
 	padding-top: 30px;
 }
 
+.tribe-events .tribe-ext-events-happening-now.tribe-ext-events-happening-now--single .tribe-events-calendar-list__event-date-tag {
+	border-left: 4px solid #334AFF;
+}
+
+.tribe-common--breakpoint-medium.tribe-events .tribe-ext-events-happening-now.tribe-ext-events-happening-now--single .tribe-events-calendar-list__event-date-tag {
+	border-left: 0;
+}
+
 .tribe-events .tribe-ext-events-happening-now.tribe-ext-events-happening-now--single .tribe-events-calendar-list__event-date-tag-datetime,
 .tribe-events .tribe-ext-events-happening-now.tribe-ext-events-happening-now--single .tribe-events-calendar-list__event-details {
 	padding: 20px 0;
+	width: 100%;
+}
+
+.tribe-common--breakpoint-medium.tribe-events .tribe-ext-events-happening-now.tribe-ext-events-happening-now--single .tribe-events-calendar-list__event-date-tag-datetime {
+	padding: 0;
+}
+
+.tribe-common--breakpoint-medium.tribe-events .tribe-ext-events-happening-now .tribe-events-calendar-list__event-details {
+	width: 100%;
 }
 
 .tribe-events .tribe-ext-events-happening-now.tribe-ext-events-happening-now--single .tribe-events-calendar-list__event-row--featured .tribe-events-calendar-list__event-date-tag-datetime::after,
