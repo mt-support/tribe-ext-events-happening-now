@@ -61,6 +61,10 @@
 	padding-top: 30px;
 }
 
+.tribe-common--breakpoint-medium.tribe-events .tribe-ext-events-happening-now.tribe-ext-events-happening-now--single .tribe-events-calendar-list__event-featured-image-wrapper {
+	padding: 30px;
+}
+
 .tribe-events .tribe-ext-events-happening-now.tribe-ext-events-happening-now--single .tribe-events-calendar-list__event-date-tag {
 	border-left: 4px solid #334AFF;
 }
