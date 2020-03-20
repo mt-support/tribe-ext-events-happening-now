@@ -46,7 +46,6 @@ $event_classes = tribe_get_post_class( [ 'tribe-events-calendar-list__event', 't
 				</header>
 
 				<?php $this->template( 'list/event/description', [ 'event' => $event ] ); ?>
-				<?php $this->template( 'happening-now/event/url', [ 'event' => $event ] ); ?>
 
 			</div>
 		</article>
