@@ -176,6 +176,16 @@
 
 .tribe-common--breakpoint-medium.tribe-events .tribe-ext-events-happening-now.tribe-ext-events-happening-now--multiple .tribe-events-calendar-list__event {
 	padding-left: 35px;
+	padding-right: 30px;
+}
+
+/* -----------------------------------------------------------------------------
+* Theme Overrides - Twenty Seventeen
+* ----------------------------------------------------------------------------- */
+
+.entry-content .tribe-theme-twentyseventeen .tribe-ext-events-happening-now a img {
+	box-shadow: none;
+	-webkit-box-shadow: none;
 }
 
 /* -----------------------------------------------------------------------------
