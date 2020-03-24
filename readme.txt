@@ -43,6 +43,10 @@ We're always interested in your feedback and our [Help Desk](https://support.the
 
 == Changelog ==
 
+= [1.1.0] 2020-03-24 =
+
+* Removing a blue border from styles
+
 = [1.0.0] 2020-03-18 =
 
 * Initial release
