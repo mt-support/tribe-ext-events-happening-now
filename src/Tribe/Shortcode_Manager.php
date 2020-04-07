@@ -17,7 +17,10 @@ class Shortcode_Manager {
 	 * @return array An associative array of shortcodes in the shape `[ <slug> => <class> ]`
  	 */
 	public function get_registered_shortcodes() {
-		$shortcodes = [ 'tribe-happening-now' => Shortcode::class, ];
+		$shortcodes = [
+			'tribe-happening-now'      => Shortcode::class,
+			'tribe-event-live-content' => Live_Content::class,
+		];
 
 		/**
 		 * Allow the registering of shortcodes into the our Pro plugin.
