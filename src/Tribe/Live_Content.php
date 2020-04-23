@@ -3,6 +3,7 @@ namespace Tribe\Extensions\EventsHappeningNow;
 
 use Tribe__Utils__Array as Arr;
 use Tribe__Date_Utils as Date_Utils;
+use Tribe__Timezones as Timezones;
 
 /**
  * Class Shortcode
@@ -31,6 +32,8 @@ class Live_Content {
 	protected $default_arguments = [
 		'id'                => null,
 		'content_extended'  => 'no',
+		'start_time'        => false,
+		'end_time'          => false,
 	];
 
 	/**
@@ -43,6 +46,8 @@ class Live_Content {
 	protected $validate_arguments_map = [
 		'id'               => [ self::class, 'validate_event' ],
 		'content_extended' => [ self::class, 'validate_time_string' ],
+		'start_time'       => [ self::class, 'validate_time_string' ],
+		'end_time'         => [ self::class, 'validate_time_string' ],
 	];
 
 	/**
@@ -90,10 +95,6 @@ class Live_Content {
 
 		$event = ! empty( $args['id'] ) ? tribe_get_event( $args['id'] ) : false;
 
-		if ( ! tribe_is_event( $event ) ) {
-			return '';
-		}
-
 		return $this->render_content( $event );
 	}
 
@@ -106,23 +107,70 @@ class Live_Content {
 	 */
 	public function render_content( $event ) {
 
-		$now        = Date_Utils::build_date_object();
-		$start_time = $event->dates->start_utc;
-		$end_time   = $event->dates->end_utc;
+		$times = $this->get_times( $event );
+
+		// if no valid time is set.
+		if ( empty( $times ) ) {
+			return __( 'No Start Time is set for Live Content to appear.', 'tribe-ext-events-happening-now' );
+		}
 
 		$args = $this->get_arguments();
 
 		// extend live content time line.
 		if ( $args['content_extended'] ) {
-			$end_time = $end_time->modify( $args['content_extended'] );
+			$times['end_time']->modify( $args['content_extended'] );
 		}
 
 		// Live Now.
-		if ( $now > $start_time && $now < $end_time ) {
+		if ( $times['now'] > $times['start_time'] && $times['now'] < $times['end_time'] ) {
 			return do_shortcode( $this->content );
 		}
 
 		return '';
+	}
+
+	/**
+	 * Calculate times depending on the Post
+	 *
+	 * @param $post \WP_Post
+	 *
+	 * @return array
+	 */
+	public function get_times( $post ) {
+
+		$args = $this->get_arguments();
+
+		$times = [];
+
+		// if start time is set then use that time overriding Event time.
+		if ( ! empty( $args['start_time'] ) ) {
+			//get wp timezone
+			if ( function_exists( 'wp_timezone' ) ) {
+				$timezone = wp_timezone();
+			} else {
+				$wp_timezone = Timezones::wp_timezone_string();
+
+				if ( Timezones::is_utc_offset( $wp_timezone ) ) {
+					$wp_timezone = Timezones::generate_timezone_string_from_utc_offset( $wp_timezone );
+				}
+
+				$timezone = new \DateTimeZone( $wp_timezone );
+			}
+
+			//if no end time is set then it should show always
+			$end_time = ! empty( $args['end_time'] ) ? $args['end_time'] : '+1 year';
+
+			$times['start_time'] = Date_Utils::build_date_object( $args['start_time'], $timezone );
+			$times['end_time']   = Date_Utils::build_date_object( $end_time, $timezone );
+			$times['now']        = Date_Utils::build_date_object( 'now', $timezone );
+
+		} else if ( tribe_is_event( $post ) ) {
+			$times['start_time'] = $post->dates->start_utc;
+			$times['end_time']   = $post->dates->end_utc;
+			$times['now']        = Date_Utils::build_date_object( 'now' );
+		}
+
+		return apply_filters( "tribe_ext_shortcode_{$this->get_registration_slug()}_calculated_time", $times, $post );
 	}
 
 	/**
