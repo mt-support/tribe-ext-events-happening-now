@@ -10,24 +10,22 @@
  * remove_action( 'some_action', [ tribe( Tribe\Extensions\EventsHappeningNow\Hooks::class ), 'some_method' ] );
  * remove_action( 'some_action', [ tribe( 'events-happening-now.views.hooks' ), 'some_method' ] );
  *
- * @since 1.0.0
- *
  * @package Tribe\Extensions\EventsHappeningNow
+ * @since   1.0.0
+ *
  */
 
 namespace Tribe\Extensions\EventsHappeningNow;
 
-use Tribe\Events\Views\V2\View;
 use Tribe\Extensions\EventsHappeningNow\Views\Happening_Now_View;
-use Tribe__Context as Context;
 use Tribe__Template;
 
 /**
  * Class Hooks
  *
- * @since 1.0.0
- *
  * @package Tribe\Extensions\EventsHappeningNow
+ * @since   1.0.0
+ *
  */
 class Hooks extends \tad_DI52_ServiceProvider {
 
@@ -94,14 +92,15 @@ class Hooks extends \tad_DI52_ServiceProvider {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param array            $namespace_map Indexed array containing the namespace as the key and path to `strpos`.
-	 * @param string           $path          Path we will do the `strpos` to validate a given namespace.
-	 * @param Tribe__Template  $template      Current instance of the template class.
+	 * @param array           $namespace_map Indexed array containing the namespace as the key and path to `strpos`.
+	 * @param string          $path          Path we will do the `strpos` to validate a given namespace.
+	 * @param Tribe__Template $template      Current instance of the template class.
 	 *
 	 * @return array  Namespace map after adding Pro to the list.
 	 */
 	public function filter_add_template_origin_namespace( $namespace_map, $path, Tribe__Template $template ) {
 		$namespace_map['happening-now'] = Main::PATH;
+
 		return $namespace_map;
 	}
 

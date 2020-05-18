@@ -84,15 +84,6 @@ if (
 			$this->plugin_path = trailingslashit( self::PATH );
 			$this->plugin_url  = plugins_url( $this->plugin_dir, self::PATH );
 
-			/**
-			 * Examples:
-			 * All these version numbers are the ones on or after November 16, 2016, but you could remove the version
-			 * number, as it's an optional parameter. Know that your extension code will not run at all (we won't even
-			 * get this far) if you are not running The Events Calendar 4.3.3+ or Event Tickets 4.3.3+, as that is where
-			 * the Tribe__Extension class exists, which is what we are extending.
-			 *
-			 * If using `tribe()`, such as with `Tribe__Dependency`, require TEC/ET version 4.4+ (January 9, 2017).
-			 */
 			$this->add_required_plugin( 'Tribe__Events__Main', '5.0.2' );
 		}
 
@@ -100,8 +91,6 @@ if (
 		 * Extension initialization and hooks.
 		 */
 		public function init() {
-			// Load plugin textdomain
-			// Don't forget to generate the 'languages/tribe-ext-events-happening-now.pot' file
 			load_plugin_textdomain( PLUGIN_TEXT_DOMAIN, false, basename( dirname( __FILE__ ) ) . '/languages/' );
 
 			if ( ! $this->php_version_check() ) {
@@ -118,24 +107,6 @@ if (
 		 * Check if we have a sufficient version of PHP. Admin notice if we don't and user should see it.
 		 *
 		 * @link https://theeventscalendar.com/knowledgebase/php-version-requirement-changes/ All extensions require PHP 5.6+.
-		 *
-		 * Delete this paragraph and the non-applicable comments below.
-		 * Make sure to match the readme.txt header.
-		 *
-		 * Note that older version syntax errors may still throw fatals even
-		 * if you implement this PHP version checking so QA it at least once.
-		 *
-		 * @link https://secure.php.net/manual/en/migration56.new-features.php
-		 * 5.6: Variadic Functions, Argument Unpacking, and Constant Expressions
-		 *
-		 * @link https://secure.php.net/manual/en/migration70.new-features.php
-		 * 7.0: Return Types, Scalar Type Hints, Spaceship Operator, Constant Arrays Using define(), Anonymous Classes, intdiv(), and preg_replace_callback_array()
-		 *
-		 * @link https://secure.php.net/manual/en/migration71.new-features.php
-		 * 7.1: Class Constant Visibility, Nullable Types, Multiple Exceptions per Catch Block, `iterable` Pseudo-Type, and Negative String Offsets
-		 *
-		 * @link https://secure.php.net/manual/en/migration72.new-features.php
-		 * 7.2: `object` Parameter and Covariant Return Typing, Abstract Function Override, and Allow Trailing Comma for Grouped Namespaces
 		 *
 		 * @return bool
 		 */

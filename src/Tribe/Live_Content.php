@@ -1,16 +1,17 @@
 <?php
+
 namespace Tribe\Extensions\EventsHappeningNow;
 
-use Tribe__Utils__Array as Arr;
 use Tribe__Date_Utils as Date_Utils;
 use Tribe__Timezones as Timezones;
+use Tribe__Utils__Array as Arr;
 
 /**
  * Class Shortcode
  *
- * @since TBD
- *
  * @package Tribe\Extensions\EventsHappeningNow
+ * @since   TBD
+ *
  */
 class Live_Content {
 	/**
@@ -30,10 +31,10 @@ class Live_Content {
 	 * @var   array
 	 */
 	protected $default_arguments = [
-		'id'                => null,
-		'content_extended'  => 'no',
-		'start_time'        => false,
-		'end_time'          => false,
+		'id'               => null,
+		'content_extended' => 'no',
+		'start_time'       => false,
+		'end_time'         => false,
 	];
 
 	/**
@@ -193,12 +194,13 @@ class Live_Content {
 	 *
 	 * @since TBD
 	 *
-	 * @param array  $arguments Set of arguments passed to the Shortcode at hand.
+	 * @param array $arguments Set of arguments passed to the Shortcode at hand.
 	 *
 	 * @return array
 	 */
 	public function parse_arguments( $arguments ) {
 		$arguments = shortcode_atts( $this->get_default_arguments(), $arguments, $this->slug );
+
 		return $this->validate_arguments( $arguments );
 	}
 
@@ -207,7 +209,7 @@ class Live_Content {
 	 *
 	 * @since TBD
 	 *
-	 * @param array  $arguments Set of arguments passed to the Shortcode at hand.
+	 * @param array $arguments Set of arguments passed to the Shortcode at hand.
 	 *
 	 * @return array
 	 */
@@ -246,8 +248,8 @@ class Live_Content {
 		 *
 		 * @since TBD
 		 *
-		 * @param  array  $validate_arguments_map   Current set of callbacks for arguments.
-		 * @param  static $instance                 Which instance of shortcode we are dealing with.
+		 * @param array  $validate_arguments_map Current set of callbacks for arguments.
+		 * @param static $instance               Which instance of shortcode we are dealing with.
 		 */
 		$validate_arguments_map = apply_filters( 'tribe_ext_shortcode_validate_arguments_map', $this->validate_arguments_map, $this );
 
@@ -258,8 +260,8 @@ class Live_Content {
 		 *
 		 * @since TBD
 		 *
-		 * @param  array  $validate_arguments_map   Current set of callbacks for arguments.
-		 * @param  static $instance                 Which instance of shortcode we are dealing with.
+		 * @param array  $validate_arguments_map Current set of callbacks for arguments.
+		 * @param static $instance               Which instance of shortcode we are dealing with.
 		 */
 		$validate_arguments_map = apply_filters( "tribe_ext_shortcode_{$registration_slug}_validate_arguments_map", $validate_arguments_map, $this );
 
@@ -273,14 +275,14 @@ class Live_Content {
 	 *
 	 * @return array
 	 */
-	public function     get_arguments() {
+	public function get_arguments() {
 		/**
 		 * Applies a filter to instance arguments.
 		 *
 		 * @since TBD
 		 *
-		 * @param  array  $arguments  Current set of arguments.
-		 * @param  static $instance   Which instance of shortcode we are dealing with.
+		 * @param array  $arguments Current set of arguments.
+		 * @param static $instance  Which instance of shortcode we are dealing with.
 		 */
 		$arguments = apply_filters( 'tribe_ext_shortcode_arguments', $this->arguments, $this );
 
@@ -291,8 +293,8 @@ class Live_Content {
 		 *
 		 * @since TBD
 		 *
-		 * @param  array  $arguments   Current set of arguments.
-		 * @param  static $instance    Which instance of shortcode we are dealing with.
+		 * @param array  $arguments Current set of arguments.
+		 * @param static $instance  Which instance of shortcode we are dealing with.
 		 */
 		$arguments = apply_filters( "tribe_ext_shortcode_{$registration_slug}_arguments", $arguments, $this );
 
@@ -302,14 +304,14 @@ class Live_Content {
 	/**
 	 * Returns a shortcode argument after been parsed.
 	 *
-	 * @uses  Arr::get For index fetching and Default.
-	 *
 	 * @since TBD
 	 *
-	 * @param array|string  $index   Which index we indent to fetch from the arguments.
-	 * @param array         $default Default value if it doesnt exist.
+	 * @param array|string $index   Which index we indent to fetch from the arguments.
+	 * @param array        $default Default value if it doesnt exist.
 	 *
 	 * @return mixed
+	 * @uses  Arr::get For index fetching and Default.
+	 *
 	 */
 	public function get_argument( $index, $default = null ) {
 		$arguments = $this->get_arguments();
@@ -320,10 +322,10 @@ class Live_Content {
 		 *
 		 * @since TBD
 		 *
-		 * @param  mixed  $argument   The argument.
-		 * @param  array  $index      Which index we indent to fetch from the arguments.
-		 * @param  array  $default    Default value if it doesnt exist.
-		 * @param  static $instance   Which instance of shortcode we are dealing with.
+		 * @param mixed  $argument The argument.
+		 * @param array  $index    Which index we indent to fetch from the arguments.
+		 * @param array  $default  Default value if it doesnt exist.
+		 * @param static $instance Which instance of shortcode we are dealing with.
 		 */
 		$argument = apply_filters( 'tribe_ext_shortcode_argument', $argument, $index, $default, $this );
 
@@ -334,10 +336,10 @@ class Live_Content {
 		 *
 		 * @since TBD
 		 *
-		 * @param  mixed  $argument   The argument value.
-		 * @param  array  $index      Which index we indent to fetch from the arguments.
-		 * @param  array  $default    Default value if it doesnt exist.
-		 * @param  static $instance   Which instance of shortcode we are dealing with.
+		 * @param mixed  $argument The argument value.
+		 * @param array  $index    Which index we indent to fetch from the arguments.
+		 * @param array  $default  Default value if it doesnt exist.
+		 * @param static $instance Which instance of shortcode we are dealing with.
 		 */
 		$argument = apply_filters( "tribe_ext_shortcode_{$registration_slug}_argument", $argument, $index, $default, $this );
 
@@ -357,8 +359,8 @@ class Live_Content {
 		 *
 		 * @since TBD
 		 *
-		 * @param  array  $default_arguments  Current set of default arguments.
-		 * @param  static $instance           Which instance of shortcode we are dealing with.
+		 * @param array  $default_arguments Current set of default arguments.
+		 * @param static $instance          Which instance of shortcode we are dealing with.
 		 */
 		$default_arguments = apply_filters( 'tribe_ext_shortcode_default_arguments', $this->default_arguments, $this );
 
@@ -369,8 +371,8 @@ class Live_Content {
 		 *
 		 * @since TBD
 		 *
-		 * @param  array  $default_arguments   Current set of default arguments.
-		 * @param  static $instance            Which instance of shortcode we are dealing with.
+		 * @param array  $default_arguments Current set of default arguments.
+		 * @param static $instance          Which instance of shortcode we are dealing with.
 		 */
 		$default_arguments = apply_filters( "tribe_ext_shortcode_{$registration_slug}_default_arguments", $this->default_arguments, $this );
 
@@ -397,9 +399,9 @@ class Live_Content {
 	/**
 	 * Check if Post ID is set or set the current post id
 	 *
-	 * @param $id
-	 *
 	 * @since TBD
+	 *
+	 * @param $id
 	 *
 	 * @return false|int
 	 */

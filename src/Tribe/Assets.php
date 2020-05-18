@@ -2,7 +2,7 @@
 /**
  * Handles registering all Assets for the Events Happening Now
  *
- * To remove a Assets:
+ * To remove Assets:
  * tribe( 'assets' )->remove( 'asset-name' );
  *
  * @since 1.0.0

@@ -100,7 +100,7 @@ class Shortcode {
 		}
 
 		// Modifies the Context for the shortcode params.
-		$context   = $this->alter_context( $context );
+		$context = $this->alter_context( $context );
 		add_filter( 'tribe_events_views_v2_view_repository_args', [ $this, 'filter_view_repository_args' ], 10, 2 );
 
 		// Fetches if we have a specific view are building.
@@ -198,11 +198,10 @@ class Shortcode {
 	 *
 	 * @since  1.0.0
 	 *
-	 *
-	 * @param array           $repository_args An array of repository arguments that will be set for all Views.
+	 * @param array   $repository_args An array of repository arguments that will be set for all Views.
 	 * @param Context $context         The current render context object.
 	 *
-	 * @return array          Repository arguments after shortcode args added.
+	 * @return array Repository arguments after shortcode args added.
 	 */
 	public function filter_view_repository_args( $repository_args, $context ) {
 		if ( ! $context instanceof Context ) {

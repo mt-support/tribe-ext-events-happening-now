@@ -7,7 +7,6 @@
 
 namespace Tribe\Extensions\EventsHappeningNow\Views;
 
-use DateInterval;
 use Tribe\Events\Views\V2\View;
 use Tribe__Context as Context;
 use Tribe__Date_Utils as Dates;
