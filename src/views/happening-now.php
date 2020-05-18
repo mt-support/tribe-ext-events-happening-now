@@ -10,7 +10,7 @@ use \Tribe\Extensions\EventsHappeningNow\Shortcode;
  *
  * @link {INSERT_ARTICLE_LINK_HERE}
  *
- * @version 5.0.2
+ * @version TBD
  *
  * @var array     $events               The array containing the events.
  * @var string[]  $container_classes    Classes used for the container of the view.

@@ -19,7 +19,7 @@ This extension adds the `[tribe-happening-now]` shortcode. The parameters that c
 * `category`: Categories to display
 * `featured`: If true, only includes featured events. If false, excludes featured events. If null (left off the shortcode), includes all.
 * `hide_url`: If true, suppresses the Website URL CTA
-* `quantity`: Max number of events to show (defaults to unlimited “-1”)
+* `quantity`: Max number of events to show (defaults to unlimited "-1")
 * `title`: Title above event list
 * `url_title`: Title of event’s Website URL CTA
 
@@ -42,6 +42,10 @@ Please visit our [extension library](https://theeventscalendar.com/extensions/) 
 We're always interested in your feedback and our [Help Desk](https://support.theeventscalendar.com/) are the best place to flag any issues. Do note, however, that the degree of support we provide for extensions like this one tends to be very limited.
 
 == Changelog ==
+
+= [TBD] TBD =
+
+* TBD
 
 = [1.1.0] 2020-03-24 =
 
