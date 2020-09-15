@@ -44,7 +44,7 @@ We're always interested in your feedback and our [Help Desk](https://support.the
 
 == Changelog ==
 
-= [1.2.0] 2020-09-?? =
+= [1.2.0] 2020-09-15 =
 
 * Add start_margin shortcode parameter to set a start time margin. Example: [tribe-happening-now start_margin="30 minutes"]
 
