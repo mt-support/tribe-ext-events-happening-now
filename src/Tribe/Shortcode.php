@@ -1,6 +1,7 @@
 <?php
 namespace Tribe\Extensions\EventsHappeningNow;
 
+use DateInterval;
 use Tribe\Events\Views\V2\Assets as Event_Assets;
 use Tribe\Events\Views\V2\Theme_Compatibility;
 use Tribe\Events\Views\V2\View;
@@ -43,6 +44,7 @@ class Shortcode {
 		'url_title'         => null,
 		'hide_url'          => null,
 		'featured'          => null,
+		'start_margin'      => null,
 	];
 
 	/**
@@ -278,6 +280,13 @@ class Shortcode {
 		if ( isset( $arguments['quantity'] ) ) {
 			$repository_args['posts_per_page'] = (int) $arguments['quantity'];
 		}
+
+    if ( isset( $arguments['start_margin'] ) ) {
+			$margin = DateInterval::createFromDateString( $arguments['start_margin'] );
+			$starts_before = clone $repository_args['starts_before'];
+			$starts_before->add( $margin );
+			$repository_args['starts_before'] = $starts_before;
+    }
 
 		return $repository_args;
 	}
