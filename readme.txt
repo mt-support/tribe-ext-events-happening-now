@@ -22,6 +22,7 @@ This extension adds the `[tribe-happening-now]` shortcode. The parameters that c
 * `quantity`: Max number of events to show (defaults to unlimited “-1”)
 * `title`: Title above event list
 * `url_title`: Title of event’s Website URL CTA
+* `start_margin`: Start time margin for live events. Uses PHP createFromDateString syntax. Examples: 30 minutes, 1 hour + 15 minutes, 2 hours
 
 == Installation ==
 
@@ -42,6 +43,10 @@ Please visit our [extension library](https://theeventscalendar.com/extensions/) 
 We're always interested in your feedback and our [Help Desk](https://support.theeventscalendar.com/) are the best place to flag any issues. Do note, however, that the degree of support we provide for extensions like this one tends to be very limited.
 
 == Changelog ==
+
+= [1.2.0] 2020-09-?? =
+
+* Add start_margin shortcode parameter to set a start time margin. Example: [tribe-happening-now start_margin="30 minutes"]
 
 = [1.1.0] 2020-03-24 =
 

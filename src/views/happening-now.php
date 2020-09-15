@@ -24,6 +24,7 @@ if ( empty( $events ) ) {
 }
 
 $happening_now_title = $shortcode_object->get_argument( 'title', __( 'Events Happening Now', 'tribe-ext-events-happening-now' ) );
+$start_margin = $shortcode_object->get_argument( 'start_margin' );
 
 $header_classes    = [ 'tribe-events-header' ];
 $wrapper_classes   = [ 'tribe-events-calendar-list', 'tribe-ext-events-happening-now' ];
@@ -50,6 +51,10 @@ $wrapper_classes[] = 1 < count( $events ) ? 'tribe-ext-events-happening-now--mul
 
 			<div class="tribe-ext-events-happening-now__title">
 				<h2 class="tribe-common-h6 tribe-common-h5--min-medium"><?php echo esc_html( $happening_now_title ); ?></h2>
+        <?php if ( $start_margin ) : ?>
+          <?php $happening_now_or_within = sprintf( esc_html__( '(or within the next %s)', 'tribe-ext-events-happening-now' ), $start_margin ); ?>
+          <p class="tribe-common-b2"><?php echo $happening_now_or_within; ?></p>
+        <?php endif; ?>
 			</div>
 
 			<?php foreach ( $events as $event ) : ?>
