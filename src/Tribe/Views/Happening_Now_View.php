@@ -7,7 +7,6 @@
 
 namespace Tribe\Extensions\EventsHappeningNow\Views;
 
-use DateInterval;
 use Tribe\Events\Views\V2\View;
 use Tribe__Context as Context;
 use Tribe__Date_Utils as Dates;
@@ -18,6 +17,15 @@ use Tribe__Date_Utils as Dates;
  * @package Tribe\Events\Views\V2\Views
  */
 class Happening_Now_View extends View {
+	/**
+	 * Statically accessible slug for this view.
+	 *
+	 * @since TBD
+	 *
+	 * @var string
+	 */
+	protected static $view_slug = 'happening-now';
+
 	/**
 	 * A variable indicating whether this View is one site visitors will see or not.
 	 *
@@ -43,7 +51,7 @@ class Happening_Now_View extends View {
 	 * @return string The slug that will be used to locate the View templates.
 	 */
 	public function get_template_slug() {
-		return 'happening-now';
+		return self::$view_slug;
 	}
 
 	/**
