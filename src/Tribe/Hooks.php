@@ -84,7 +84,7 @@ class Hooks extends \tad_DI52_ServiceProvider {
 	 */
 	public function filter_events_views( array $views = [] ) {
 
-		$views['happening-now'] = Happening_Now_View::class;
+		$views[ Happening_Now_View::get_view_slug() ] = Happening_Now_View::class;
 
 		return $views;
 	}
