@@ -17,6 +17,7 @@
 
 namespace Tribe\Extensions\EventsHappeningNow;
 
+use TEC\Common\Contracts\Service_Provider;
 use Tribe\Events\Views\V2\View;
 use Tribe\Extensions\EventsHappeningNow\Views\Happening_Now_View;
 use Tribe__Context as Context;
@@ -29,7 +30,7 @@ use Tribe__Template;
  *
  * @package Tribe\Extensions\EventsHappeningNow
  */
-class Hooks extends \tad_DI52_ServiceProvider {
+class Hooks extends Service_Provider {
 
 	/**
 	 * Binds and sets up implementations.

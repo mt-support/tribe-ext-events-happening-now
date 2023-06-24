@@ -4,7 +4,7 @@
  * Plugin URI:        https://theeventscalendar.com/extensions/events-happening-now/
  * GitHub Plugin URI: https://github.com/mt-support/tribe-ext-events-happening-now
  * Description:       Provides a widget, shortcode, and optional meta for displaying events that are happening now.
- * Version:           1.0.0
+ * Version:           1.1.1
  * Extension Class:   Tribe\Extensions\EventsHappeningNow\Main
  * Author:            Modern Tribe, Inc.
  * Author URI:        http://m.tri.be/1971
@@ -50,7 +50,7 @@ if (
 	 * Extension main class, class begins loading on init() function.
 	 */
 	class Main extends Tribe__Extension {
-		const VERSION = '1.0.0';
+		const VERSION = '1.1.1';
 
 		const PATH = __DIR__;
 
@@ -93,7 +93,7 @@ if (
 			 *
 			 * If using `tribe()`, such as with `Tribe__Dependency`, require TEC/ET version 4.4+ (January 9, 2017).
 			 */
-			$this->add_required_plugin( 'Tribe__Events__Main', '5.0.2' );
+			$this->add_required_plugin( 'Tribe__Events__Main', '6.1.2.2' );
 		}
 
 		/**
